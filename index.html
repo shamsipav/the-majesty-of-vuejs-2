@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <title>Привет, Vue</title>
+</head>
+<body>
+    <div id="app" class="container">
+        <h1>Введите 2 числа и выберите операцию</h1>
+        <form class="form-inline">
+            <input v-model.number="a" class="form-control">
+            <select v-model="operator" class="form-control">
+                <option>+</option>
+                <option>-</option>
+                <option>*</option>
+                <option>/</option>
+            </select>
+            <input v-model.number="b" class="form-control">
+        </form>
+        <h2>Результат: {{a}} {{operator}} {{b}} = {{c}}</h2>
+        <pre>{{ $data }}</pre>     
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            a: 1,
+            b: 2,
+            operator: '+'
+        },
+        computed: {
+            c: function (event) {
+                switch (this.operator) {
+                    case '+':
+                        return this.a + this.b
+                    case '-':
+                        return this.a - this.b
+                    case '*':
+                        return this.a * this.b
+                    case '/':
+                        return this.a / this.b
+                }
+            }
+        }
+    })
+</script>
+</html>
